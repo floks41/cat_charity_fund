@@ -90,7 +90,7 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
         со значение поля fully_invested равным False, т.е. не закрытых."""
         charities = await session.execute(
             select(self.model).where(
-                self.model.fully_invested == False,
+                ~self.model.fully_invested,
             )
         )
         charities = charities.scalars().all()
