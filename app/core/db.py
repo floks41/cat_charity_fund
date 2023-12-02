@@ -10,15 +10,14 @@ from app.core.config import settings
 
 class PreBase:
     """Абстрактный класс для моделей.
-    Задается имя таблицы в БД по умолчанию и первичный ключ id."""
+    Задается имя таблицы в БД по умолчанию и первичный ключ id.
+    """
+    id = Column(Integer, primary_key=True)
 
     @declared_attr
     def __tablename__(cls):
         """Именем таблицы будет название модели в нижнем регистре."""
         return cls.__name__.lower()
-
-    """Во все таблицы будет добавлено поле ID."""
-    id = Column(Integer, primary_key=True)
 
 
 # В качестве основы для базового класса укажем класс PreBase.

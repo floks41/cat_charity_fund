@@ -1,6 +1,7 @@
 """Основной модуль проекта CAT_CHARITY_FUND на фреймворке FastAPI."""
 
 
+import logging
 from fastapi import FastAPI
 
 from app.api.router import main_router
@@ -16,4 +17,5 @@ app.include_router(main_router)
 async def startup():
     """При запуске приложения создает суперпользователя
     (при его отсутствии)."""
+    logging.basicConfig(level=logging.INFO)
     await create_first_superuser()

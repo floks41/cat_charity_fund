@@ -1,6 +1,6 @@
 """Модуль настройки аутентификации и управления пользователями."""
 
-
+import logging
 from typing import Optional, Union
 
 from fastapi import Depends, Request
@@ -78,8 +78,8 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
         self, user: User, request: Optional[Request] = None
     ):
         """Действия после успешной регистрации пользователя.
-        Вывод сообщения в терминал."""
-        print(f'Пользователь {user.email} зарегистрирован.')
+        Вывод сообщения в лог."""
+        logging.info(f'Пользователь {user.email} зарегистрирован.')
 
 
 async def get_user_manager(user_db=Depends(get_user_db)):
